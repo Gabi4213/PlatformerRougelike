@@ -12,6 +12,11 @@ public class FeatherFallingAbility : AbilityBase
         if (currentCooldown >= 0)
         {
             currentCooldown -= Time.deltaTime;
+            isOnCooldown = true;
+        }
+        else
+        {
+            isOnCooldown = false;
         }
     }
 
@@ -33,7 +38,7 @@ public class FeatherFallingAbility : AbilityBase
         isUsing = true;
         playerMov.Data = abilityPlayerData;
         yield return new WaitForSeconds(useTime);
-        currentCooldown = maxCooldwon;
+        currentCooldown = maxCooldown;
         playerMov.Data = normalPlayerData;
         isUsing = false;
     }

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class AbilityBase : MonoBehaviour
 {
-    public float maxCooldwon;
+    public float maxCooldown;
     public float currentCooldown;
     public float useTime;
-    public bool isUsing;
+    public bool isUsing = false;
+    public bool isOnCooldown = false;
 
     public virtual void UseAction()
     {

@@ -9,9 +9,14 @@ public class ShieldAbility : AbilityBase
 
     private void Update()
     {
-        if(currentCooldown >= 0)
+        if (currentCooldown >= 0)
         {
             currentCooldown -= Time.deltaTime;
+            isOnCooldown = true;
+        }
+        else
+        {
+            isOnCooldown = false;
         }
     }
 
@@ -34,7 +39,7 @@ public class ShieldAbility : AbilityBase
         ShieldItem.SetActive(true);
         ShieldItem.GetComponent<CircleCollider2D>().radius = sheildRange;
         yield return new WaitForSeconds(useTime);
-        currentCooldown = maxCooldwon;
+        currentCooldown = maxCooldown;
         ShieldItem.SetActive(false);
         ShieldItem.GetComponent<CircleCollider2D>().radius = 0.0f;
         isUsing = false;

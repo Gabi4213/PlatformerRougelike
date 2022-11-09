@@ -12,6 +12,11 @@ public class HealthAbility : AbilityBase
         if (currentCooldown >= 0)
         {
             currentCooldown -= Time.deltaTime;
+            isOnCooldown = true;
+        }
+        else
+        {
+            isOnCooldown = false;
         }
     }
 
@@ -33,7 +38,7 @@ public class HealthAbility : AbilityBase
         isUsing = true;
         PlayerHealth.ChangeHealth(HealthIncreaseAmount);
         yield return new WaitForSeconds(useTime);
-        currentCooldown = maxCooldwon;
+        currentCooldown = maxCooldown;
         isUsing = false;
     }
 }
