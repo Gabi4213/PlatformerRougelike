@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FeatherFallingAbility : AbilityBase
+public class DashAbility : AbilityBase
 {
     public PlayerMovement playerMov;
-    public PlayerData normalPlayerData, abilityPlayerData;
 
     private void Update()
     {
@@ -24,23 +23,21 @@ public class FeatherFallingAbility : AbilityBase
     {
         if (CanUse())
         {
-            StartCoroutine(UseFeatherFalling());
+            StartCoroutine(UseDash());
         }
     }
 
     public bool CanUse()
     {
-        return !isUsing && currentCooldown <= 0;
+        return !isUsing && currentCooldown <= 0 && playerMov.CanDash();
     }
 
-    IEnumerator UseFeatherFalling()
+    IEnumerator UseDash()
     {
+        playerMov.OnDashInput();
         isUsing = true;
-        playerMov.Data = abilityPlayerData;
         yield return new WaitForSeconds(useTime);
         currentCooldown = maxCooldown;
-        playerMov.Data = normalPlayerData;
         isUsing = false;
     }
-
 }

@@ -55,10 +55,10 @@ public class PlayerMovement : MonoBehaviour
 	#endregion
 
 	#region INPUT PARAMETERS
-	private Vector2 _moveInput;
+	public Vector2 _moveInput;
 
 	public float LastPressedJumpTime { get; private set; }
-	public float LastPressedDashTime { get; private set; }
+	public float LastPressedDashTime { get; set; }
 	#endregion
 
 	[SerializeField] private GameObject runFX;
@@ -138,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.K))
 		{
-			OnDashInput();
+			//OnDashInput();
 		}
 		#endregion
 
@@ -222,11 +222,9 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 		#endregion
-
 		#region DASH CHECKS
 		if (CanDash() && LastPressedDashTime > 0)
 		{
-
 			//Freeze game for split second. Adds juiciness and a bit of forgiveness over directional input
 			Sleep(Data.dashSleepTime); 
 
@@ -477,7 +475,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		//Overall this method of dashing aims to mimic Celeste, if you're looking for
 		// a more physics-based approach try a method similar to that used in the jump
-		Debug.Log("Dash");
 		LastOnGroundTime = 0;
 		LastPressedDashTime = 0;
 
@@ -569,7 +566,7 @@ public class PlayerMovement : MonoBehaviour
 		return IsWallJumping && RB.velocity.y > 0;
 	}
 
-	private bool CanDash()
+	public bool CanDash()
 	{
 		if (!IsDashing && _dashesLeft < Data.dashAmount && LastOnGroundTime > 0 && !_dashRefilling)
 		{

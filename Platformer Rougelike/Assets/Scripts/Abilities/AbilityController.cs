@@ -71,19 +71,19 @@ public class AbilityController : MonoBehaviour
 
         #region Ability Inputs
         //Ability One
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !abilities[0].isOnCooldown)
         {
             abilities[0].UseAction();
             abilityTextTimer[0] = abilities[0].maxCooldown;
         }
         //Ability Two
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !abilities[1].isOnCooldown)
         {
             abilities[1].UseAction();
             abilityTextTimer[1] = abilities[1].maxCooldown;
         }
         //Ability Three
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !abilities[2].isOnCooldown)
         {
             abilities[2].UseAction();
             abilityTextTimer[2] = abilities[2].maxCooldown;
